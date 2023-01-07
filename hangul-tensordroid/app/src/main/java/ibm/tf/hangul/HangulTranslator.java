@@ -20,6 +20,7 @@ import javax.net.ssl.HttpsURLConnection;
 /**
  * This class is used for asynchronously sending Korean text to the Watson Language Translator
  * service for translation.
+ * 한국어 텍스트 번역을 위해 Wastson Language Translator 서비스에 텍스트를 보내는데 사용됨.
  */
 public class HangulTranslator extends AsyncTask<String, Void, String> {
 
@@ -50,6 +51,7 @@ public class HangulTranslator extends AsyncTask<String, Void, String> {
      * This is an asynchronously called function, that will send an HTTP POST request to the
      * translator endpoint with the Korean text in the request.
      * @return String response from the translator service.
+     * 한국어 텍스트가  포함된 요청을 번역기 서비로 보낸다.
      */
     @Override
     protected String doInBackground(String... params) {
@@ -110,6 +112,7 @@ public class HangulTranslator extends AsyncTask<String, Void, String> {
      * This is called after the response string is returned. This parses out the English
      * translation and sets the necessary TextView for displaying the translation.
      * @param result String
+     * 영어로 번역된 구문을 표시할 TextView 설정.
      */
     @Override
     protected void onPostExecute(String result) {
