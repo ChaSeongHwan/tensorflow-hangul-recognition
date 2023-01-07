@@ -19,9 +19,11 @@ import java.util.ArrayList;
 public class PaintView extends View {
 
     // Length in pixels of each dimension for the bitmap displayed on the screen.
+    // 화면에 표시되는 비트맵에 대한 길이.
     public static final int BITMAP_DIMENSION = 128;
 
     // Length in pixels of each dimension for the bitmap to be fed into the model.
+    // 모델에 공급되는 비트맵에 대한 길이.
     public static final int FEED_DIMENSION = 64;
 
     private boolean setup, drawHere;
@@ -54,6 +56,7 @@ public class PaintView extends View {
 
     /**
      * Remove all strokes and clear the canvas.
+     * 모든 획 제거 및 캔버스 초기화.
      */
     public void reset() {
         path.reset();
@@ -71,6 +74,8 @@ public class PaintView extends View {
      * This function will create the transform matrix for scaling up and centering the bitmap
      * that will represent our character image inside the view. The inverse matrix is also created
      * for mapping touch coordinates to coordinates within the bitmap.
+     * 뷰 내부의 캐릭터 이미지를 나타낼 비트맵 확대, 중앙에 배치하기 위한 변환 매트릭스 생성
+     * 터치 좌표를 비트맵 내의 좌표에 매핑하기 위해 역행렬도 생성함.
      */
     private void setupScaleMatrices() {
 
@@ -100,6 +105,7 @@ public class PaintView extends View {
     /**
      * This gets the coordinates in the bitmap based on the the coordinates of where the
      * user touched.
+     * 사용자가 터치한 좌표를 기준으로 비트맵의 좌표를 가져옴.
      */
     public void getBitmapCoords(float x, float y, PointF out) {
         float points[] = new float[2];
@@ -183,6 +189,7 @@ public class PaintView extends View {
 
     /**
      * This function will convert the bitmap pixels to usable input to our TensorFlow model.
+     * 비트맵 픽셀을 Tensorflow 모델에 사용가능한 입력값으로 변환시킴.
      */
     public float[] getPixelData() {
         Bitmap resizedBitmap = Bitmap.createScaledBitmap(bitmap, FEED_DIMENSION,
@@ -198,6 +205,7 @@ public class PaintView extends View {
 
         // Here we want to convert each pixel to a floating point number between 0.0 and 1.0 with
         // 1.0 being white and 0.0 being black.
+        // 각 픽셀의 값을 0과 1의 부동소수점 숫자로 전처리함.
         for (int i = 0; i < pixels.length; ++i) {
             int pix = pixels[i];
             int b = pix & 0xff;
@@ -209,6 +217,7 @@ public class PaintView extends View {
     /**
      * This is an object to encapsulate the path and paint information related to drawing on the
      * bitmap/canvas.
+     * 비트맵 / 캔버스에 드로잉과 관련된 경로과 페인트 정보를 캡슐화 하는 객체.
      */
     public class PaintPath {
 
