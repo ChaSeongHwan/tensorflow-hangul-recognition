@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * This is called when the application is first initialized/started. Basic setup logic is
      * performed here.
      * @param savedInstanceState Bundle
+     * 애플리케이션이 처음 초기화/시작 될때 호출, 기본 설정 수행.
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     /**
      * This method is called when the user clicks a button in the view.
+     * 사용자가 뷰에서 버튼을 클릭할 때 호출됨.
      * @param view
      */
     @Override
@@ -111,6 +113,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     /**
      * Delete the last character in the text input field.
+     * 텍스트 입력 필드에서 마지막 문자 삭제함.
      */
     private void backspace() {
         int len = resultText.getText().length();
@@ -121,6 +124,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     /**
      * Add a space to the text input.
+     * 텍스트 필드에 공백 추가.
      */
     private void space() {
         resultText.append(" ");
@@ -128,6 +132,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     /**
      * Clear the text and drawing to return to the beginning state.
+     * 텍스트와 그림을 지우고 시작 상태로 돌아감.
      */
     private void clear() {
         paintView.reset();
@@ -139,6 +144,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     /**
      * Perform the classification, updating UI elements with the results.
+     * 분류 수행 및 UI요소를 업데이트함.
      */
     private void classify() {
         float pixels[] = paintView.getPixelData();
@@ -153,6 +159,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     /**
      * Perform the translation using the current Korean text in the text input field.
+     * 현재 한국어 텍스트를 사용하여 번역을 수행.
      */
     private void translate() {
         String text = resultText.getText().toString();
@@ -173,6 +180,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     /**
      * This function will switch out the last classified character with the alternative given the
      * index in the top labels array.
+     * 최상위 label 배열의 인덱스를 마지막으로 분류된 문자로 전환.
      */
     private void useAltLabel(int index) {
         backspace();
@@ -193,6 +201,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     /**
      * Load pre-trained model in memory.
+     * 사전에 훈련된 모델을 불러옴.
      */
     private void loadModel() {
         new Thread(new Runnable() {
